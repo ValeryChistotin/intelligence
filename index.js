@@ -45,6 +45,7 @@ function mutate(givenNumber, chance){
 
     var mutatePoint = getRandomInt(0, numberLength);
     var entryArray = givenNumber.split('').slice(mutatePoint);
+    var notMutatePath = givenNumber.slice(0, mutatePoint);
 
     entryArray.every(item => {
         if(Math.random() < chance){
@@ -56,7 +57,7 @@ function mutate(givenNumber, chance){
         }
     });
 
-    return resultNumber.join('');
+    return notMutatePath + resultNumber.join('');
 }
 
 console.log(mutate('10110110010111', 1));
