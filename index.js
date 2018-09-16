@@ -122,3 +122,26 @@ aggregation.max = Math.max.apply(null, aggregation.fx);
 aggregation.middle = functionsSum / aggregation.chromosomes.length;
 
 console.log(aggregation);
+function mutate(givenNumber, chance){
+    var resultNumber = [];
+    var numberLength = givenNumber.length;
+
+    var mutatePoint = getRandomInt(0, numberLength);
+    var entryArray = givenNumber.split('').slice(mutatePoint);
+    var notMutatePath = givenNumber.slice(0, mutatePoint);
+
+    entryArray.every(item => {
+        if(Math.random() < chance){
+            resultNumber.push(+!+item);
+
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    return notMutatePath + resultNumber.join('');
+}
+
+console.log(mutate('10110110010111', 1));
+console.log(sumOfGivenFunction([1,5,12,30]));
