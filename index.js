@@ -38,3 +38,26 @@ function crossover (firstNum, secondNum, breakPoint){
         secondNum : secondNumFPath.join('') + firstNumSPath.join('')
     }
 }
+
+function mutate(givenNumber, chance){
+    var resultNumber = [];
+    var numberLength = givenNumber.length;
+
+    var mutatePoint = getRandomInt(0, numberLength);
+    var entryArray = givenNumber.split('').slice(mutatePoint);
+
+    entryArray.every(item => {
+        if(Math.random() < chance){
+            resultNumber.push(+!+item);
+
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    return resultNumber.join('');
+}
+
+console.log(mutate('10110110010111', 1));
+console.log(sumOfGivenFunction([1,5,12,30]));
