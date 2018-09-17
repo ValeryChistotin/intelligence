@@ -40,10 +40,10 @@ function crossover(firstNum, secondNum, breakPoint) {
   secondNumFPath = secondNum.split('').slice(0, breakPoint);
   secondNumSPath = secondNum.split('').slice(breakPoint);
 
-  return {
-    firstNum: firstNumFPath.join('') + secondNumSPath.join(''),
-    secondNum: secondNumFPath.join('') + firstNumSPath.join('')
-  };
+  return [
+    firstNumFPath.join('') + secondNumSPath.join(''),
+    secondNumFPath.join('') + firstNumSPath.join('')
+  ];
 }
 
 function mutate(givenNumber, chance) {

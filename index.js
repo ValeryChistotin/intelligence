@@ -56,8 +56,27 @@ aggregation.x.forEach(value => {
   createField('reality', Math.round(decimalPlan));
 });
 
+let crossoverArr = crossover(
+  aggregation.binary[0],
+  aggregation.binary[1],
+  getRandomInt(0, 4)
+).concat(
+  crossover(aggregation.binary[2], aggregation.binary[3], getRandomInt(0, 5))
+);
+
+let crossoveredValueInDec = crossoverArr.map(item => {
+  return parseToDecimal(item);
+});
+
+let crossoveredFx = crossoveredValueInDec.map(item => {
+  return givenFunction(item);
+});
+
 aggregation.sum = functionsSum;
 aggregation.max = Math.max.apply(null, aggregation.fx);
 aggregation.middle = functionsSum / aggregation.chromosomes.length;
+aggregation.crossover = crossoverArr;
+aggregation.crossoveredValues = crossoveredValueInDec;
+aggregation.crossoveredFx = crossoveredFx;
 
 console.log(aggregation);
