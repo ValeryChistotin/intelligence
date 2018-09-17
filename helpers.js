@@ -13,11 +13,17 @@ function sumOfGivenFunction(argsArr) {
 }
 
 function parseToBinary(number) {
-  return number.toString(2);
+  let binaryNum = number.toString(2);
+
+  while (binaryNum.length < 5) {
+    binaryNum = '0' + binaryNum;
+  }
+
+  return binaryNum;
 }
 
 function parseToDecimal(number) {
-  return +number;
+  return parseInt(number, 2);
 }
 
 function adaptability(x, sum) {
@@ -33,6 +39,7 @@ function crossover(firstNum, secondNum, breakPoint) {
   firstNumSPath = firstNum.split('').slice(breakPoint);
   secondNumFPath = secondNum.split('').slice(0, breakPoint);
   secondNumSPath = secondNum.split('').slice(breakPoint);
+
   return {
     firstNum: firstNumFPath.join('') + secondNumSPath.join(''),
     secondNum: secondNumFPath.join('') + firstNumSPath.join('')
@@ -73,27 +80,6 @@ const getDecimal = num => {
   return +str;
 };
 
-function mutate(givenNumber, chance) {
-  var resultNumber = [];
-  var numberLength = givenNumber.length;
-
-  var mutatePoint = getRandomInt(0, numberLength);
-  var entryArray = givenNumber.split('').slice(mutatePoint);
-  var notMutatePath = givenNumber.slice(0, mutatePoint);
-
-  entryArray.every(item => {
-    if (Math.random() < chance) {
-      resultNumber.push(+!+item);
-
-      return true;
-    } else {
-      return false;
-    }
-  });
-
-  return notMutatePath + resultNumber.join('');
-}
-
 module.exports = {
   getRandomInt,
   givenFunction,
@@ -103,7 +89,6 @@ module.exports = {
   adaptability,
   getPlan,
   crossover,
-  // mutate,
   getDecimal,
   mutate
 };

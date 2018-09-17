@@ -23,7 +23,12 @@ const indexes = {
 };
 const aggregation = {};
 
-aggregation.chromosomes = [1, 2, 3, 4];
+aggregation.chromosomes = [
+  getRandomInt(0, 30),
+  getRandomInt(0, 30),
+  getRandomInt(0, 30),
+  getRandomInt(0, 30)
+];
 
 const createField = (field, value, functionsSum) => {
   if (!aggregation[field]) {
@@ -48,13 +53,7 @@ aggregation.x.forEach(value => {
   createField('adaptability', value, functionsSum);
   const decimalPlan = createField('plan', value, functionsSum);
 
-  const decimalReal = getRandomInt(0, 1);
-
-  if (decimalPlan > decimalReal) {
-    createField('reality', Math.round(decimalReal));
-  } else {
-    createField('reality', Math.ceil(decimalReal));
-  }
+  createField('reality', Math.round(decimalPlan));
 });
 
 aggregation.sum = functionsSum;
