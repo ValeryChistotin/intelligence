@@ -48,14 +48,12 @@ for (var i = 0; i < 6; i++) {
 
   aggregation.chromosomes.forEach(value => {
     createField('binary', value);
-
-    const cur = createField('x');
-    createField('fx', cur);
+    createField('fx', value);
   });
 
-  const functionsSum = sumOfGivenFunction(aggregation.x);
+  const functionsSum = sumOfGivenFunction(aggregation.chromosomes);
 
-  aggregation.x.forEach(value => {
+  aggregation.chromosomes.forEach(value => {
     createField('adaptability', value, functionsSum);
     const decimalPlan = createField('plan', value, functionsSum);
 
