@@ -24,9 +24,9 @@ const indexes = {
   reality: value => value
 };
 
-for (var i = 0; i < 6; i++) {
-  var aggregation = {};
+var aggregation = {};
 
+for (var i = 0; i < 6; i++) {
   const createField = (field, value, functionsSum) => {
     if (!aggregation[field]) {
       aggregation[field] = [indexes[field](value, functionsSum)];
