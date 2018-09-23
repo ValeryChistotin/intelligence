@@ -57,15 +57,32 @@ for (var i = 0; i < 6; i++) {
     createField('adaptability', value, functionsSum);
     const decimalPlan = createField('plan', value, functionsSum);
 
-    createField('reality', Math.round(decimalPlan));
+    let chance = Math.random();
+    let result;
+    if(getDecimal(value) > chance){
+        result = Math.round(decimalPlan);
+    } else {
+        result = Math.floor(decimalPlan);
+    }
+
+    createField('reality', result);
   });
 
+  let randomOrder = [];
+  while(randomOrder.length < 4){
+      let randomNum = getRandomInt(0,3);
+
+      if(randomOrder.every(item => item!=randomNum)){
+        randomOrder.push(randomNum);
+      }
+  }
+
   let crossoverArr = crossover(
-    aggregation.binary[0],
-    aggregation.binary[1],
+    aggregation.binary[randomOrder[0]],
+    aggregation.binary[randomOrder[1]],
     getRandomInt(0, 4)
   ).concat(
-    crossover(aggregation.binary[2], aggregation.binary[3], getRandomInt(0, 5))
+    crossover(aggregation.binary[randomOrder[2]], aggregation.binary[randomOrder[3]], getRandomInt(0, 4))
   );
 
   let crossoveredValueInDec = crossoverArr.map(item => {
