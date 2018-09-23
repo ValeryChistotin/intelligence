@@ -48,7 +48,7 @@ figures.forEach(figure => {
 
   aggregation.y.push(currentY);
   aggregation.d.push(currentD);
-  aggregation.e.push(y - d);
+  aggregation.e.push(currentY - currentD);
 });
 
 console.log(aggregation);
