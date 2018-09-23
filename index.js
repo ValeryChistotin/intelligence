@@ -1,3 +1,5 @@
+const fixValue = value => parseFloat(value.toFixed(2));
+
 const parseToBinary = value => parseFloat(value.toString(2));
 
 const findS = arr => arr.reduce((sum, cur) => (sum += cur));
@@ -19,20 +21,13 @@ const aggregation = {
   e: []
 };
 
-const X = [];
-const W = [];
-const S = [];
-const y = [];
-const d = [];
-const e = [];
-
 const w0 = 2.7;
 
 const interimS = [];
 
 figures.forEach(figure => {
   const currentX = parseToBinary(figure);
-  const currentW = parseFloat((1 / figure).toFixed(2));
+  const currentW = fixValue(1 / figure);
 
   aggregation.X.push(currentX);
   aggregation.W.push(currentW);
@@ -41,9 +36,9 @@ figures.forEach(figure => {
 
   const currentS = findS(interimS);
 
-  aggregation.S.push(currentS);
+  aggregation.S.push(fixValue(currentS));
 
-  const currentY = findY(S, w0);
+  const currentY = findY(currentS, w0);
   const currentD = findD(figure);
 
   aggregation.y.push(currentY);
