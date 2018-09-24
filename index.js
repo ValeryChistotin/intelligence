@@ -59,22 +59,22 @@ for (var i = 0; i < 6; i++) {
 
     let chance = Math.random();
     let result;
-    if(getDecimal(value) > chance){
-        result = Math.round(decimalPlan);
+    if (getDecimal(value) > chance) {
+      result = Math.round(decimalPlan);
     } else {
-        result = Math.floor(decimalPlan);
+      result = Math.floor(decimalPlan);
     }
 
     createField('reality', result);
   });
 
   let randomOrder = [];
-  while(randomOrder.length < 4){
-      let randomNum = getRandomInt(0,3);
+  while (randomOrder.length < 4) {
+    let randomNum = getRandomInt(0, 3);
 
-      if(randomOrder.every(item => item!=randomNum)){
-        randomOrder.push(randomNum);
-      }
+    if (randomOrder.every(item => item != randomNum)) {
+      randomOrder.push(randomNum);
+    }
   }
 
   let crossoverArr = crossover(
@@ -82,7 +82,11 @@ for (var i = 0; i < 6; i++) {
     aggregation.binary[randomOrder[1]],
     getRandomInt(0, 4)
   ).concat(
-    crossover(aggregation.binary[randomOrder[2]], aggregation.binary[randomOrder[3]], getRandomInt(0, 4))
+    crossover(
+      aggregation.binary[randomOrder[2]],
+      aggregation.binary[randomOrder[3]],
+      getRandomInt(0, 4)
+    )
   );
 
   let crossoveredValueInDec = crossoverArr.map(item => {
