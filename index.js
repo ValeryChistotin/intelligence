@@ -84,20 +84,16 @@ const trainingFigures = [
   '111111001111'
 ];
 
-for (let k = 0; k < 10; k += 1) {
-  let curr = '';
+let curr = '';
 
-  for (let i = 0; i < 12; i += 1) {
-    curr += Math.round(Math.random());
-  }
-
-  training.W.push(curr);
+for (let i = 0; i < 12; i += 1) {
+  curr += Math.round(Math.random());
 }
 
 let Serr = 0;
 
 trainingFigures.forEach((x, k) => {
-  const w = training.W[k];
+  const w = curr;
   const w0 = 4;
   const nu = 1;
 
