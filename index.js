@@ -52,7 +52,7 @@ const iteration = () => {
     }
 
     isCorrect = answer - correctAnswer[index];
-    errorSumm += isCorrect;
+    errorSumm += isCorrect * isCorrect;
     // console.log('error sum- ', errorSumm);
 
     for (let i = 0; i < 12; i += 1) {
@@ -80,7 +80,7 @@ let signal = '010110010010';
 let bitSumm = 0;
 let answer;
 
-for (let i = 0; i < 10; i += 1) {
+for (let i = 0; i < 12; i += 1) {
   bitSumm += signal[i] * weightCoeff[i];
 }
 console.log('bit summ - ', bitSumm);
