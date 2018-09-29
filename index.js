@@ -10,7 +10,7 @@ function checkEven(numberToCheck) {
     '001010111111',
     '111011010100',
     '111111101111',
-    '111111001111'
+    '111111010100'
   ];
 
   let weightCoeff = [];
