@@ -1,12 +1,13 @@
 function checkEven(numberToCheck) {
-  const correctAnswer = [0, 1, 0, 1, 0, 1, 0, 1, 0];
+  const correctAnswer = [0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
 
   const trainingFigures = [
+    '010101101010',
     '010110010010',
     '111110100111',
     '111110001110',
     '011101111001',
-    '111011001111',
+    '111110001110',
     '001010111111',
     '111011010100',
     '111111101111',
@@ -71,7 +72,7 @@ function checkEven(numberToCheck) {
 
   //console.log(weightCoeff);
 
-  let signal = trainingFigures[numberToCheck - 1];
+  let signal = trainingFigures[numberToCheck];
   let bitSumm = 0;
   let answer;
 
@@ -90,6 +91,6 @@ function checkEven(numberToCheck) {
   answer ? console.log('even') : console.log('odd');
 }
 
-for (let i = 1; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   checkEven(i);
 }
