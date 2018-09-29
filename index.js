@@ -26,14 +26,13 @@ for (let i = 0; i < 12; i += 1) {
 console.log(weightCoeff);
 
 let errorSumm;
+let weightLimit = 2;
+const speedTraining = 1;
 
 const iteration = () => {
   errorSumm = 0;
 
   trainingFigures.forEach((inputSignal, index) => {
-    const weightLimit = 2;
-    const speedTraining = 1;
-
     let bitSumm;
     let isCorrect;
     let answer;
@@ -57,6 +56,8 @@ const iteration = () => {
       weightCoeff[i] -= speedTraining * isCorrect * inputSignal[i];
       console.log(weightCoeff);
     }
+
+    weightLimit += speedTraining * answer;
   });
 };
 
