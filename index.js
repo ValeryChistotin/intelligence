@@ -23,6 +23,7 @@ let weightCoeff = '';
 for (let i = 0; i < 12; i += 1) {
   weightCoeff += Math.round(Math.random());
 }
+console.log(weightCoeff);
 
 let errorSumm;
 
@@ -34,7 +35,8 @@ const iteration = () => {
     const speedTraining = 1;
 
     let bitSumm;
-    let isError;
+    let isCorrect;
+    let answer;
 
     bitSumm = 0;
 
@@ -43,27 +45,28 @@ const iteration = () => {
     }
 
     if (bitSumm > weightLimit) {
-      isError = 1;
+      answer = 1;
     } else {
-      isError = 0;
+      answer = 0;
     }
 
-    isError = training.Y[index] - correctAnswer[index];
-    errorSumm += isError;
+    isCorrect = answer - correctAnswer[index];
+    errorSumm += isCorrect;
 
     for (let i = 0; i < 10; i += 1) {
-      weightCoeff[i] -= speedTraining * isError * inputSignal[i];
+      weightCoeff[i] -= speedTraining * isCorrect * inputSignal[i];
+      console.log(weightCoeff);
     }
   });
 };
 
-const extendsErrorCount = 0;
+const extendsErrorCount = 4;
 
 iteration();
 
-while (errorSumm > extendsErrorCount) {
-  console.log('iteration');
+/* while (errorSumm > extendsErrorCount) {
+  console.log(weightCoeff);
   iteration();
-}
+} */
 
 console.log(weightCoeff);
