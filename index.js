@@ -72,7 +72,9 @@ function checkEven(numberToCheck) {
 
   //console.log(weightCoeff);
 
-  let signal = trainingFigures[numberToCheck];
+  // let signal = trainingFigures[numberToCheck];
+  let signal = numberToCheck;
+
   let bitSumm = 0;
   let answer;
 
@@ -87,10 +89,7 @@ function checkEven(numberToCheck) {
     answer = 0;
   }
 
-  console.log('Number - ', numberToCheck);
-  answer ? console.log('even') : console.log('odd');
+  return answer;
 }
 
-for (let i = 0; i < 10; i++) {
-  checkEven(i);
-}
+window.checkEven = checkEven;
