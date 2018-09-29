@@ -90,33 +90,45 @@ for (let i = 0; i < 12; i += 1) {
   curr += Math.round(Math.random());
 }
 
-let Serr = 0;
+let Serr;
 
-trainingFigures.forEach((x, k) => {
-  const w = curr;
-  const w0 = 4;
-  const nu = 1;
+const iteration = () => {
+  Serr = 0;
 
-  let S;
-  let N = 10; // p = 10
-  let e;
+  trainingFigures.forEach((x, k) => {
+    const w = curr;
+    const w0 = 4;
+    const nu = 1;
 
-  S = 0;
+    let S;
+    let N = 10; // p = 10
+    let e;
 
-  for (let i = 0; i < N; i += 1) {
-    S += x[i] * w[i];
-  }
+    S = 0;
 
-  if (S > w0) {
-    training.Y.push(1);
-  } else {
-    training.Y.push(0);
-  }
+    for (let i = 0; i < N; i += 1) {
+      S += x[i] * w[i];
+    }
 
-  e = training.Y[k] - d[k];
-  Serr += e * e;
+    if (S > w0) {
+      training.Y.push(1);
+    } else {
+      training.Y.push(0);
+    }
 
-  for (let i = 0; i < N; i += 1) {
-    training.w[i] -= nu * e * x[i];
-  }
-});
+    e = training.Y[k] - d[k];
+    Serr += e * e;
+
+    for (let i = 0; i < N; i += 1) {
+      training.w[i] -= nu * e * x[i];
+    }
+  });
+};
+
+const Eson = 1;
+
+iteration();
+
+if (Serr > Eson) {
+  iteration();
+}
