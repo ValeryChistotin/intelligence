@@ -65,11 +65,11 @@ function checkEven(numberToCheck) {
   iteration();
 
   while (errorSumm > extendsErrorCount) {
-    console.log(weightCoeff);
+    // console.log(weightCoeff);
     iteration();
   }
 
-  console.log(weightCoeff);
+  //console.log(weightCoeff);
 
   let signal = trainingFigures[numberToCheck - 1];
   let bitSumm = 0;
@@ -78,7 +78,7 @@ function checkEven(numberToCheck) {
   for (let i = 0; i < 12; i += 1) {
     bitSumm += signal[i] * weightCoeff[i];
   }
-  console.log('bit summ - ', bitSumm);
+  //console.log('bit summ - ', bitSumm);
 
   if (bitSumm > weightLimit) {
     answer = 1;
@@ -86,8 +86,10 @@ function checkEven(numberToCheck) {
     answer = 0;
   }
 
-  console.log('Number - ', numberToCheck, ' answer - even');
+  console.log('Number - ', numberToCheck);
   answer ? console.log('even') : console.log('odd');
 }
 
-checkEven(1);
+for (let i = 1; i < 10; i++) {
+  checkEven(i);
+}
