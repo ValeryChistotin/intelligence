@@ -13,7 +13,11 @@ body {
   font-family: 'Calibri', sans-serif;
 }
 
-#signal {
+.mode {
+  margin-top: 40px;
+}
+
+.signal {
   margin-top: 60px;
 }
 
@@ -25,12 +29,12 @@ body {
   background: rgba(0, 0, 0, 1);
 }
 
-#container {
+.container {
   width: 220px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 40px 0 40px 0;
+  margin: 40px 0 140px 0;
 }
 
 button {
@@ -41,4 +45,5 @@ button {
   color: #fff;
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  margin-bottom: 5px;
 }

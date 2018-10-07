@@ -1,36 +1,55 @@
 const fn = window.checkEven;
 
-const valuesList = [1, 2, 3, 11, 12, 4, 10, 9, 5, 8, 7, 6];
+const modeList = ['Обучение', 'Тестирование', 'Проверка'];
 
-const renderValues = valuesList.map(item => {
-  const input = document.createElement('input');
+modeList.forEach((mode, index) => {
+  const valuesList = [1, 2, 3, 11, 12, 4, 10, 9, 5, 8, 7, 6];
 
-  input.value = item;
-  input.name = item;
-  input.type = 'checkbox';
-  input.id = item;
-  input.className = 'input-txt';
+  const renderValues = valuesList.map(item => {
+    const input = document.createElement('input');
 
-  return input;
-});
+    input.value = item;
+    input.name = item;
+    input.type = 'checkbox';
+    input.id = item;
+    input.className = 'input-txt' + ' ' + index;
 
-const container = document.getElementById('container');
-
-renderValues.forEach(value => {
-  container.appendChild(value);
-});
-
-const button = document.getElementById('calculate');
-
-button.addEventListener('click', function() {
-  const checkboxes = document.getElementsByTagName('input');
-
-  let signal = '';
-
-  Array.from(checkboxes).forEach(checkbox => {
-    signal += +checkbox.checked;
+    return input;
   });
 
-  const signalElement = document.getElementById('signal');
-  signalElement.textContent = `Number is ${fn(signal) ? 'even' : 'odd'}`;
+  const modeElement = document.getElementsByClassName('mode')[index];
+
+  modeElement.textContent = mode;
+
+  const container = document.getElementsByClassName('container')[index];
+
+  renderValues.forEach(value => {
+    container.appendChild(value);
+  });
+
+  const button = document.getElementsByClassName('calculate')[index];
+
+  button.addEventListener('click', function() {
+    const checkboxes = document.getElementsByClassName('input-txt ' + index);
+
+    let signal = '';
+
+    Array.from(checkboxes).forEach(checkbox => {
+      signal += +checkbox.checked;
+    });
+
+    const signalElement = document.getElementsByClassName('signal')[index];
+
+    signalElement.textContent = `Цифра ${fn(signal) ? 'четная' : 'нечетная'}`;
+  });
+
+  const buttonClear = document.getElementsByClassName('clear')[index];
+
+  buttonClear.addEventListener('click', function() {
+    const checkboxes = document.getElementsByClassName('input-txt ' + index);
+
+    Array.from(checkboxes).forEach(checkbox => {
+      checkbox.checked = false;
+    });
+  });
 });
