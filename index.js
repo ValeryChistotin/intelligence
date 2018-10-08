@@ -1,4 +1,16 @@
-function checkEven(numberToCheck) {
+const obj = {
+  trainingFigures: []
+};
+
+let weightCoeff = [];
+let weightLimit = 2;
+const speedTraining = 1;
+
+for (let i = 0; i < 12; i += 1) {
+  weightCoeff.push(Math.round(Math.random()));
+}
+
+const train = () => {
   const correctAnswer = [0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
 
   const trainingFigures = [
@@ -14,16 +26,9 @@ function checkEven(numberToCheck) {
     '111111010100'
   ];
 
-  let weightCoeff = [];
-
-  for (let i = 0; i < 12; i += 1) {
-    weightCoeff.push(Math.round(Math.random()));
-  }
   //console.log(weightCoeff);
 
   let errorSumm;
-  let weightLimit = 2;
-  const speedTraining = 1;
 
   const iteration = () => {
     errorSumm = 0;
@@ -70,8 +75,10 @@ function checkEven(numberToCheck) {
     iteration();
   }
 
-  //console.log(weightCoeff);
+  console.log('обучение завершено');
+};
 
+function checkEven(numberToCheck) {
   // let signal = trainingFigures[numberToCheck];
   let signal = numberToCheck;
 
