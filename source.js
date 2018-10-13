@@ -73,9 +73,32 @@ modeList.forEach((mode, index) => {
     '111010100111'
   ];
 
+  const rightFigures = [1, 8, 1, 9, 7, 6, 5, 4, 2];
+
+  const testingCorrectAnswer = [0, 1, 0, 0, 0, 1, 0, 1, 1];
+
   buttonTest.addEventListener('click', function() {
-    testingFigures.forEach(testingFigure => {
-      console.log(`Цифра ${checkEven(testingFigure) ? 'четная' : 'нечетная'}`);
+    let errorsCount = 0;
+
+    testingFigures.forEach((testingFigure, index) => {
+      const answer = checkEven(testingFigure);
+
+      if (answer !== testingCorrectAnswer[index]) {
+        console.log('Ошибка');
+        errorsCount += 1;
+      }
+
+      console.log(
+        `Цифра ${rightFigures[index]} ${answer ? 'четная' : 'нечетная'}`
+      );
     });
+
+    console.log('===============================');
+    console.log(`Ошибок допущено: ${errorsCount}`);
+    console.log(
+      `Процент ошибок: ${parseFloat(
+        (errorsCount * 100 / testingFigures.length).toFixed(2)
+      )} %`
+    );
   });
 });

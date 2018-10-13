@@ -99,20 +99,6 @@ function checkEven(numberToCheck) {
   return answer;
 }
 
-const testingFigures = [
-  '001011001001',
-  '111101010111',
-  '010110010111',
-  '111011001111',
-  '111001111100',
-  '011100111111',
-  '111100010100',
-  '101111001001',
-  '111010100111'
-];
-
-testingFigures.forEach(testingFigure => {
-  console.log(`Цифра ${checkEven(testingFigure) ? 'четная' : 'нечетная'}`);
-});
+// const testingFigures = [
 
 window.checkEven = checkEven;
