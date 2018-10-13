@@ -3,7 +3,9 @@ const obj = {
 };
 
 let weightCoeff = [];
+let weightCoeff2;
 let weightLimit = 2;
+let weightLimit2 = 2;
 const speedTraining = 1;
 
 for (let i = 0; i < 12; i += 1) {
@@ -29,6 +31,7 @@ const train = () => {
   //console.log(weightCoeff);
 
   let errorSumm;
+  let errorSumm2;
 
   const iteration = () => {
     errorSumm = 0;
@@ -41,7 +44,7 @@ const train = () => {
       bitSumm = 0;
 
       //  console.log('input signal - ', inputSignal);
-      for (let i = 0; i < 10; i += 1) {
+      for (let i = 0; i < 12; i += 1) {
         bitSumm += inputSignal[i] * weightCoeff[i];
       }
       // console.log('bit summ - ', bitSumm);
@@ -63,7 +66,38 @@ const train = () => {
 
       weightLimit += speedTraining * answer;
       // console.log('weight limit - ', weightLimit, '\n');
+      iteration2(answer, correctAnswer[index]);
     });
+  };
+
+  const iteration2 = (inputSignal, correctAnswer) => {
+      errorSumm2 = 0;
+
+      let bitSumm;
+      let isCorrect;
+      let answer;
+
+      bitSumm = 0;
+
+      //  console.log('input signal - ', inputSignal);
+      bitSumm += inputSignal * weightCoeff2;
+
+      // console.log('bit summ - ', bitSumm);
+
+      if (bitSumm > weightLimit2) {
+        answer = 1;
+      } else {
+        answer = 0;
+      }
+
+      isCorrect = answer - correctAnswer;
+      errorSumm2 += isCorrect * isCorrect;
+      // console.log('error sum- ', errorSumm);
+
+        weightCoeff2 -= speedTraining * isCorrect * inputSignal;
+      // console.log(weightCoeff);
+
+      weightLimit2 += speedTraining * answer;
   };
 
   const extendsErrorCount = 0;
@@ -76,6 +110,8 @@ const train = () => {
   }
 
   console.log('обучение завершено');
+  console.log(weightCoeff);
+  console.log(weightCoeff2);
 };
 
 function checkEven(numberToCheck) {
