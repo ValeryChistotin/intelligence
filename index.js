@@ -6,16 +6,25 @@ let weightCoeff = [];
 let weightCoeff2 = 1;
 let weightLimit = 2;
 let weightLimit2 = 2;
-const speedTraining = 1;
+const speedTraining = 5;
 
 for (let i = 0; i < 12; i += 1) {
   weightCoeff.push(Math.round(Math.random()));
 }
 
 const train = () => {
-  const correctAnswer = [0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
+  const correctAnswer = [0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
 
   const trainingFigures = [
+    '001011001001',
+    '111101010111',
+    '010110010111',
+    '111011001111',
+    '111001111100',
+    '011100111111',
+    '111100010100',
+    '101111001001',
+    '111010100111',
     '010101101010',
     '010110010010',
     '111110100111',
@@ -31,7 +40,6 @@ const train = () => {
   //console.log(weightCoeff);
 
   let errorSumm;
-  let errorSumm2;
 
   const iteration = () => {
     errorSumm = 0;
@@ -49,11 +57,7 @@ const train = () => {
       }
       // console.log('bit summ - ', bitSumm);
 
-      if (bitSumm > weightLimit) {
-        answer = 1;
-      } else {
-        answer = 0;
-      }
+      answer = 1/(1+Math.exp(-bitSumm));
 
       isCorrect = answer - correctAnswer[index];
       errorSumm += isCorrect * isCorrect;
@@ -62,7 +66,7 @@ const train = () => {
       for (let i = 0; i < 12; i += 1) {
         weightCoeff[i] -= speedTraining * isCorrect * inputSignal[i];
       }
-      // console.log(weightCoeff);
+       //console.log(weightCoeff);
 
       weightLimit += speedTraining * answer;
       // console.log('weight limit - ', weightLimit, '\n');
@@ -71,7 +75,6 @@ const train = () => {
   };
 
   const iteration2 = (inputSignal, correctAnswer) => {
-    errorSumm2 = 0;
 
     let bitSumm;
     let isCorrect;
@@ -84,14 +87,10 @@ const train = () => {
 
     // console.log('bit summ - ', bitSumm);
 
-    if (bitSumm > weightLimit2) {
-      answer = 1;
-    } else {
-      answer = 0;
-    }
+    answer = 1/(1+Math.exp(-bitSumm));
 
     isCorrect = answer - correctAnswer;
-    errorSumm2 += isCorrect * isCorrect;
+    errorSumm += isCorrect * isCorrect;
     // console.log('error sum- ', errorSumm);
 
     weightCoeff2 -= speedTraining * isCorrect * inputSignal;
@@ -100,18 +99,16 @@ const train = () => {
     weightLimit2 += speedTraining * answer;
   };
 
-  const extendsErrorCount = 0;
+  const extendsErrorCount = 1;
 
   iteration();
 
-  while (errorSumm > extendsErrorCount) {
+ for(let i = 0; i < 10000; i++){
     // console.log(weightCoeff);
     iteration();
   }
 
   console.log('обучение завершено');
-  console.log(weightCoeff);
-  console.log(weightCoeff2);
 };
 
 function checkEven(numberToCheck) {
@@ -126,13 +123,26 @@ function checkEven(numberToCheck) {
   }
   //console.log('bit summ - ', bitSumm);
 
-  if (bitSumm > weightLimit) {
-    answer = 1;
-  } else {
-    answer = 0;
-  }
+  answer = 1/(1+Math.exp(-bitSumm));
 
-  return answer;
+  let signal2 = answer;
+
+  let bitSumm2 = 0;
+  let answer2;
+  bitSumm2 += signal2 * weightCoeff2;
+
+  if(bitSumm2 > 1){
+    answer2 = 1;
+  } else {
+    answer2 = 0;
+  }
+  
+  console.log('bit summ - ', bitSumm2);
+  console.log('w coef - ', weightCoeff2);
+  console.log('w lim - ', weightLimit2);
+  
+
+  return answer2;
 }
 
 // const testingFigures = [
