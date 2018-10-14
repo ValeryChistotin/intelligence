@@ -3,7 +3,7 @@ const obj = {
 };
 
 let weightCoeff = [];
-let weightCoeff2;
+let weightCoeff2 = 1;
 let weightLimit = 2;
 let weightLimit2 = 2;
 const speedTraining = 1;
@@ -71,33 +71,33 @@ const train = () => {
   };
 
   const iteration2 = (inputSignal, correctAnswer) => {
-      errorSumm2 = 0;
+    errorSumm2 = 0;
 
-      let bitSumm;
-      let isCorrect;
-      let answer;
+    let bitSumm;
+    let isCorrect;
+    let answer;
 
-      bitSumm = 0;
+    bitSumm = 0;
 
-      //  console.log('input signal - ', inputSignal);
-      bitSumm += inputSignal * weightCoeff2;
+    //  console.log('input signal - ', inputSignal);
+    bitSumm += inputSignal * weightCoeff2;
 
-      // console.log('bit summ - ', bitSumm);
+    // console.log('bit summ - ', bitSumm);
 
-      if (bitSumm > weightLimit2) {
-        answer = 1;
-      } else {
-        answer = 0;
-      }
+    if (bitSumm > weightLimit2) {
+      answer = 1;
+    } else {
+      answer = 0;
+    }
 
-      isCorrect = answer - correctAnswer;
-      errorSumm2 += isCorrect * isCorrect;
-      // console.log('error sum- ', errorSumm);
+    isCorrect = answer - correctAnswer;
+    errorSumm2 += isCorrect * isCorrect;
+    // console.log('error sum- ', errorSumm);
 
-        weightCoeff2 -= speedTraining * isCorrect * inputSignal;
-      // console.log(weightCoeff);
+    weightCoeff2 -= speedTraining * isCorrect * inputSignal;
+    // console.log(weightCoeff);
 
-      weightLimit2 += speedTraining * answer;
+    weightLimit2 += speedTraining * answer;
   };
 
   const extendsErrorCount = 0;
