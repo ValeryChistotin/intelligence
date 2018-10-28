@@ -65,7 +65,7 @@ const iteration = () => {
         //конец второго слоя
         //обратное распространение 2 слой
 
-        let isCorrect = correctAnswer[index] - answer2;
+        let isCorrect = answer2 -  correctAnswer[index];
         let df2 = answer2 * (1 - answer2);
         let dw2 = [];
 
@@ -105,6 +105,9 @@ const train = () => {
     for (let i = 0; i < epoxCount; i++) {
         iteration();
     }
+
+    console.log(weightCoeffs);
+    console.log(weightCoeff2);
 }
 
 function checkEven(numberToCheck) {
@@ -118,7 +121,7 @@ function checkEven(numberToCheck) {
             bitSumm[w] += signal[i] * weightCoeffs[w][i];
         }
 
-        answers[w] = 1 / (1 + Math.exp(-bitSumm));
+        answers[w] = 1 / (1 + Math.exp(-bitSumm[w]));
     }
 
     let bitSumm2 = 0;
@@ -128,7 +131,11 @@ function checkEven(numberToCheck) {
         bitSumm2 += answers[i] * weightCoeff2[i];
     }
 
-    if (bitSumm2 > 1) {
+    console.log(bitSumm);
+    console.log(answers);
+    console.log(bitSumm2);
+
+    if (bitSumm > 1) {
         answer2 = 1;
     } else {
         answer2 = 0;
