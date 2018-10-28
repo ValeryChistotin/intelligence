@@ -3,7 +3,7 @@ const epoxCount = 10000;
 let weightCoeffs = [];
 let weightLimits = [2, 2, 2, 2, 2];
 let weightCoeff2 = [];
-let errorSumm = 0;
+
 
 const speedTraining = 1;
 const correctAnswer = [0, 1, 0, 0, 0, 1, 0, 1, 1, 0];
@@ -42,6 +42,7 @@ const iteration = () => {
 
         let bitSumm = [0, 0, 0, 0, 0];
         let answers = [];
+        let errorSumm = 0;
 
         for (let w = 0; w < 5; w++) {
             for (let i = 0; i < 12; i += 1) {
