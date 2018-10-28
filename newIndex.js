@@ -35,23 +35,13 @@ for (let i = 0; i < 5; i += 1) {
     weightCoeff2.push(Math.round(Math.random()));
 }
 
-let bitSumm2;
-let answer2;
-let bitSumm;
-let answers;
-let isCorrect;
-let df2;
-let dw2;
-let df1;
-let dw1;
-
 const iteration = () => {
 
     trainingFigures.forEach((inputSignal, index) => {
         //прямой ход
 
-        bitSumm = [0, 0, 0, 0, 0];
-        answers = [];
+        let bitSumm = [0, 0, 0, 0, 0];
+        let answers = [];
 
         for (let w = 0; w < 5; w++) {
             for (let i = 0; i < 12; i += 1) {
@@ -63,8 +53,8 @@ const iteration = () => {
 
         // конец первого слоя 
 
-        bitSumm2 = 0;
-        answer2;
+        let bitSumm2 = 0;
+        let answer2;
 
         for (let i = 0; i < 5; i += 1) {
             bitSumm2 += answers[i] * weightCoeff2[i];
@@ -75,9 +65,9 @@ const iteration = () => {
         //конец второго слоя
         //обратное распространение 2 слой
 
-        isCorrect = correctAnswer[index] - answer2;
-        df2 = answer2 * (1 - answer2);
-        dw2 = [];
+        let isCorrect = correctAnswer[index] - answer2;
+        let df2 = answer2 * (1 - answer2);
+        let dw2 = [];
 
         for (let i = 0; i < 5; i += 1) {
             dw2[i] = df2 * isCorrect * answers[i];
@@ -85,8 +75,8 @@ const iteration = () => {
 
         //первый слой
 
-        df1 = [];
-        dw1 = [[], [], [], [], []];
+        let df1 = [];
+        let dw1 = [[],[],[],[],[]];
 
         for (let w = 0; w < 5; w++) {
             df1[w] = answers[w] * (1 - answers[w]);
@@ -96,7 +86,7 @@ const iteration = () => {
                 dw1[w][i] = df1[w] * inputSignal[i] * errorSumm;
             }
         }
-
+        
         //коррекция весовых коэффицентов
 
         for (let i = 0; i < 5; i += 1) {
@@ -106,7 +96,7 @@ const iteration = () => {
         }
 
         for (let j = 0; j < 5; j += 1) {
-            weightCoeff2 += speedTraining * dw2[j];
+            weightCoeff2[j] += speedTraining * dw2[j];
         }
     });
 }
