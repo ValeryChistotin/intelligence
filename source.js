@@ -4,7 +4,7 @@ const modeList = ['Обучение', 'Тестирование', 'Провер�
 
 const buttonTrain = document.getElementsByClassName('train')[0];
 
-buttonTrain.addEventListener('click', function() {
+buttonTrain.addEventListener('click', function () {
   train();
 });
 
@@ -35,7 +35,7 @@ modeList.forEach((mode, index) => {
 
   const button = document.getElementsByClassName('calculate')[index];
 
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function () {
     const checkboxes = document.getElementsByClassName('input-txt');
 
     let signal = '';
@@ -51,7 +51,7 @@ modeList.forEach((mode, index) => {
 
   const buttonClear = document.getElementsByClassName('clear')[index];
 
-  buttonClear.addEventListener('click', function() {
+  buttonClear.addEventListener('click', function () {
     const checkboxes = document.getElementsByClassName('input-txt');
 
     Array.from(checkboxes).forEach(checkbox => {
@@ -83,18 +83,19 @@ modeList.forEach((mode, index) => {
     '111111010100'
   ];
 
-  const rightFigures = [1, 8, 1, 9, 7, 6, 5, 4, 2, 0, 1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9];
+  const rightFigures = [1, 8, 1, 9, 7, 6, 5, 4, 2, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const testingCorrectAnswer = [0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0];
 
-  buttonTest.addEventListener('click', function() {
+  buttonTest.addEventListener('click', function () {
     let errorsCount = 0;
 
     testingFigures.forEach((testingFigure, index) => {
       const answer = checkEven(testingFigure);
 
       if (answer !== testingCorrectAnswer[index]) {
-        console.log('Ошибка');
+        console.log(' | Ошибка');
+        console.log(' \\/');
         errorsCount += 1;
       }
 
