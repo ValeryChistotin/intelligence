@@ -96,4 +96,5 @@ const data = [
   63.1394
 ];
 
-window.data = data;
+//window.data = data;
+module.exports = data;
