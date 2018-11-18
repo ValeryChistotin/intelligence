@@ -21,9 +21,9 @@ const timeWindowLength = 10;
 const trainingExamplesNumber =
   timeseriesLength - testSampleLength - timeWindowLength;
 const firstLayersNeuronsNumber = 4;
-const epochsNumber = 100;
+const epochsNumber = 10000;
 const trainingSpeed = 0.004;
-const activityFunctionParam = 0.5;
+const activityFunctionParam = 0.005;
 
 const weightCoefficient1 = [[], [], [], []];
 
@@ -77,12 +77,12 @@ for (let k = 0; k < epochsNumber; k += 1) {
     dw2[i] = 0;
   }
 
-  for (let iprim = 1; iprim < trainingExamplesNumber; iprim += 1) {
+  for (let iprim = 0; iprim < trainingExamplesNumber; iprim += 1) {
     v = [0, 0, 0, 0];
     x[0] = 1;
 
     for (let i = 1; i < timeWindowLength + 1; i += 1) {
-      x[i] = normalizedArr[iprim + i - 2];
+      x[i] = normalizedArr[iprim + i - 1];
     }
 
     d = normalizedArr[iprim + timeWindowLength];
@@ -152,13 +152,13 @@ let z = [];
 let x = [];
 let xp = [];
 
-for (let iprim = 1; iprim < n1; iprim++) {
+for (let iprim = 0; iprim < n1; iprim++) {
   x = [1];
   let v = [0, 0, 0, 0];
   let y = 0;
 
   for (let j = 1; j < timeWindowLength + 1; j++) {
-    x[j] = normalizedArr[j + iprim - 2];
+    x[j] = normalizedArr[j + iprim - 1];
   }
 
   for (let i = 0; i < weightCoefficient1.length; i += 1) {
@@ -180,11 +180,18 @@ for (let iprim = 1; iprim < n1; iprim++) {
   xp[iprim + timeWindowLength] = (y - rangeA1) * dp / (rangeB1 - rangeA1) + pmin;
 }
 
+for(let i = 1 + timeWindowLength; i < trainingExamplesNumber; i++){
+  mape += mape + Math.abs((inputData[i] - xp[i]/inputData[i]));
+}
+
+let totalMape = 100 * mape/(inputData.length - timeWindowLength - testSampleLength);
 
 
 
 console.log('w1 ======', weightCoefficient1);
 console.log('\n w2 ======', weightCoefficient2);
 console.log('\n answer ======', xp);
+console.log('\n ошибка обучения ======', totalMape);
+
 
 
