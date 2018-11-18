@@ -1,11 +1,12 @@
 const xpPlusFive = xp.map(item => item + 5);
 
-const labels = inputData.map((item, index) => `Day ${index}`);
-
 const shift = 10;
+const xpf = xpPlusFive.splice(10);
 const shiftArr = new Array(shift).fill(0);
 
-const res = [...shiftArr, ...inputData];
+const labels = inputData.map((item, index) => `Day ${index}`);
+
+const res = [...shiftArr, ...xpf];
 
 const ctx = document.getElementById('myChart').getContext('2d');
 const chart = new Chart(ctx, {
