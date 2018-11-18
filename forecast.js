@@ -1,5 +1,5 @@
-//const inputData = window.data;
-const inputData = require('./data.js');
+const inputData = window.data;
+// const inputData = require('./data.js');
 const timeseriesLength = inputData.length;
 
 const rangeA1 = 1;
@@ -49,9 +49,9 @@ for (let k = 0; k < epochsNumber; k += 1) {
   const x = [];
   let d;
   const z = [];
-  let y = 0
+  let y = 0;
   let e = 0;
-  let v
+  let v;
 
   const df = [];
 
@@ -108,7 +108,6 @@ for (let k = 0; k < epochsNumber; k += 1) {
 
     e1 += e * e;
 
-
     // // TODO
     for (let i = 0; i < dw2.length; i += 1) {
       dw2[i] += e * z[i];
@@ -140,10 +139,7 @@ for (let k = 0; k < epochsNumber; k += 1) {
   for (let i = 0; i < e1.length; i += 1) {
     e2[k] = e1[i] / trainingExamplesNumber;
   }
-
-
 }
-
 
 let n1 = inputData.length - timeWindowLength;
 let mape = 0;
@@ -176,21 +172,20 @@ for (let iprim = 0; iprim < n1; iprim++) {
     y += z[i] * weightCoefficient2[i];
   }
 
-  xp[iprim + timeWindowLength] = (y - rangeA1) * dp / (rangeB1 - rangeA1) + pmin;
+  xp[iprim + timeWindowLength] =
+    (y - rangeA1) * dp / (rangeB1 - rangeA1) + pmin;
 }
 
-for(let i = 1 + timeWindowLength; i < trainingExamplesNumber; i++){
-  mape += Math.abs((inputData[i] - xp[i])/inputData[i]);
+for (let i = 1 + timeWindowLength; i < trainingExamplesNumber; i++) {
+  mape += Math.abs((inputData[i] - xp[i]) / inputData[i]);
 }
 
-let totalMape = 100 * mape/(inputData.length - timeWindowLength - testSampleLength);
+let totalMape =
+  100 * mape / (inputData.length - timeWindowLength - testSampleLength);
 
-
+window.xp = xp;
 
 console.log('w1 ======', weightCoefficient1);
 console.log('\n w2 ======', weightCoefficient2);
 console.log('\n answer ======', xp);
 console.log('\n ошибка обучения ======', totalMape);
-
-
-
