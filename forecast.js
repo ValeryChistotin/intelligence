@@ -147,7 +147,6 @@ for (let k = 0; k < epochsNumber; k += 1) {
 
 let n1 = inputData.length - timeWindowLength;
 let mape = 0;
-let mape1 = 0;
 let z = [];
 let x = [];
 let xp = [];
@@ -181,7 +180,7 @@ for (let iprim = 0; iprim < n1; iprim++) {
 }
 
 for(let i = 1 + timeWindowLength; i < trainingExamplesNumber; i++){
-  mape += mape + Math.abs((inputData[i] - xp[i]/inputData[i]));
+  mape += Math.abs((inputData[i] - xp[i])/inputData[i]);
 }
 
 let totalMape = 100 * mape/(inputData.length - timeWindowLength - testSampleLength);
