@@ -100,3 +100,14 @@ function kmeans(points, k, distance, snapshotPeriod, snapshotCb) {
   }
   return clusters;
 }
+
+let points = [];
+for (let i = 0; i < 10; i++){
+  let point = [];
+  point[0] = Math.random() * 10;
+  point[1] = Math.random() * 10;
+  points.push(point);
+}
+
+let res = kmeans(points,null,null,3,()=>{});
+console.log(res);

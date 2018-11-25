@@ -1,0 +1,42 @@
+
+svg.som {
+	border: 1px solid black;
+}
+#start_button {
+    font-size: 20px;
+    display: block;
+    margin: 15px;
+    background: lightblue;
+    width: 100px;
+}
+.cell {	
+	stroke: #333;
+  transition: 0.2s;
+  transition-timing-function: ease-out;
+}
+.cell_neigbor {
+	stroke: #aaa;
+}
+.cell_target {
+	stroke: #ccc;
+}
+@-webkit-keyframes slideIn {
+0% { margin-bottom: -121px; }
+100%   { margin-bottom: 0px; }
+}
+@-moz-keyframes slideIn {
+0% { margin-bottom: -121px; }
+100%   { margin-bottom: 0px; }
+}
+@-o-keyframes slideIn {
+0% { margin-bottom: -121px; }
+100%   { margin-bottom: 0px; }
+}
+@-ms-keyframes slideIn {
+0% { margin-bottom: -121px; }
+100%   { margin-bottom: 0px; }
+}
+@keyframes slideIn {
+0% { margin-bottom: -121px; }
+100%   { margin-bottom: 0px; }
+}
