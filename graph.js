@@ -4,7 +4,9 @@ const shift = 10;
 const xpf = xpPlusFive.splice(10);
 const shiftArr = new Array(shift).fill(0);
 
-const labels = inputData.map((item, index) => `Day ${index}`);
+const labelsInput = inputData.map((item, index) => `Day ${index}`);
+
+const labels = [...labelsInput, `Day ${inputData.length}`];
 
 const res = [...shiftArr, ...xpf];
 

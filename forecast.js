@@ -147,7 +147,7 @@ let z = [];
 let x = [];
 let xp = [];
 
-for (let iprim = 0; iprim < n1; iprim++) {
+for (let iprim = 0; iprim < n1 + 1; iprim++) {
   x = [1];
   let v = [0, 0, 0, 0];
   let y = 0;
@@ -176,16 +176,33 @@ for (let iprim = 0; iprim < n1; iprim++) {
     (y - rangeA1) * dp / (rangeB1 - rangeA1) + pmin;
 }
 
-for (let i = 1 + timeWindowLength; i < trainingExamplesNumber; i++) {
+for (
+  let i = 1 + timeWindowLength;
+  i < trainingExamplesNumber + timeWindowLength;
+  i++
+) {
   mape += Math.abs((inputData[i] - xp[i]) / inputData[i]);
 }
 
 let totalMape =
   100 * mape / (inputData.length - timeWindowLength - testSampleLength);
 
+let mape1 = 0;
+
+for (
+  let i = trainingExamplesNumber + timeWindowLength + 1;
+  i < timeseriesLength;
+  i++
+) {
+  mape1 += Math.abs((inputData[i] - xp[i]) / inputData[i]);
+}
+
+let totalMape1 = 100 * mape1 / testSampleLength;
+
 window.xp = xp;
 
-console.log('w1 ======', weightCoefficient1);
-console.log('\n w2 ======', weightCoefficient2);
-console.log('\n answer ======', xp);
+// console.log('w1 ======', weightCoefficient1);
+// console.log('\n w2 ======', weightCoefficient2);
+// console.log('\n answer ======', xp);
 console.log('\n ошибка обучения ======', totalMape);
+console.log('\n ошибка прогноза ======', totalMape1);
